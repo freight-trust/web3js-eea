@@ -1,0 +1,22 @@
+# travis-ci
+
+language: node_js
+node_js:
+- '10'
+- '12'
+sudo: false
+
+before_install:
+#- npm config set spin false
+- npm install 
+
+install:
+- npm run-script test:unit
+
+jobs:
+  include:
+    - stage: test
+      script: npm run-script test:unit
+    - stage: build
+      script: npm install --package-lock-only
+ 
